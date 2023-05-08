@@ -46,7 +46,7 @@ import Footer from '../components/Footer';
 function News() {
     const [news, setNews] = useState([])
         useEffect(() => {
-          fetch('https://643bebbd4477945573633041.mockapi.io/news/news')
+          fetch('http://localhost:4000/news')
             .then(response => response.json())
             .then(response => {
                 console.log(response);

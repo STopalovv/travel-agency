@@ -54,7 +54,7 @@ import Navbar from '../components/Navbar'
 function Packs() {
     const [packs, setPacks] = useState([])
     useEffect(() => {
-      fetch('https://643bebbd4477945573633041.mockapi.io/news/packs')
+      fetch('http://localhost:4000/packs')
         .then(response => response.json())
         .then(response => {
             setPacks(response)
@@ -67,7 +67,7 @@ function Packs() {
         <div style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", width: "90%", marginLeft: "auto"}}>
             {packs.map(item =>
         <Unit>
-                    <Link to={`/packs/${item.id}`}>
+                    <Link to={`/packs/${item._id}`}>
         <Container>
             <div />
             <Image src={item.image}/>

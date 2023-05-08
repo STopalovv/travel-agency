@@ -4,9 +4,10 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ReservationForm from '../components/ReservationForm';
 
 const publicRequest = axios.create({
-    baseURL: "https://643bebbd4477945573633041.mockapi.io/news/packs"
+    baseURL: "http://localhost:4000/packs/"
 }) 
 
 const Container = styled.div``;
@@ -62,18 +63,23 @@ const Container = styled.div``;
 
 function SinglePack() {
     const [pack, setPack] = useState({})
+    const [showForm, setShowForm] = useState(false)
     const location = useLocation();
     const id = location.pathname.split("/")[2];
 
     useEffect(() => {
         const getProduct = async () => {
                 const res = await publicRequest.get(id);
-                console.log('here')
+                console.log(id)
                 setPack(res.data)
             
         }
         getProduct()
     }, [id])
+
+    const handleButtonClick = () => {
+      setShowForm(true)
+    }
     
 
   return (
@@ -92,7 +98,8 @@ function SinglePack() {
           <Desc>{pack.activities}</Desc>
           <Price>{pack.price} лв.</Price>
           <AddContainer>
-            <Button>Резервирай Място</Button>
+            <Button onClick={handleButtonClick}>Резервирай Място</Button>
+            {showForm && <ReservationForm setShowForm={setShowForm} />}
           </AddContainer>
         </InfoContainer>
       </Wrapper>
