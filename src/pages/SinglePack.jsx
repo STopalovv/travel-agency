@@ -90,16 +90,15 @@ function SinglePack() {
           <Image src={pack.image} />
         </ImgContainer>
         <InfoContainer>
-          <Desc>{pack.destination}</Desc>
-          <Desc>{pack.start}</Desc>
-          <Desc>{pack.startDate}</Desc>
-          <Desc>{pack.endDate}</Desc>
-          <Desc>{pack.stayingPlace}</Desc>
-          <Desc>{pack.activities}</Desc>
+          <Desc>Дестинация: {pack.destination}</Desc>
+          <Desc>Тръгване от: {pack.start}</Desc>
+          <Desc>Дата на тръгване: { new Date(pack.startDate).getDay()}/{ new Date(pack.startDate).getMonth() + 1}/{ new Date(pack.startDate).getFullYear()}</Desc>
+          <Desc>Дата на връщане: { new Date(pack.endDate).getDay()}/{ new Date(pack.endDate).getMonth() + 1}/{ new Date(pack.endDate).getFullYear()}</Desc>
+          <Desc>Нощувки: {pack.stayingPlace}</Desc>
           <Price>{pack.price} лв.</Price>
           <AddContainer>
             <Button onClick={handleButtonClick}>Резервирай Място</Button>
-            {showForm && <ReservationForm setShowForm={setShowForm} />}
+            {showForm && <ReservationForm setShowForm={setShowForm} destination={pack.destination} price={pack.price} date={pack.startDate}/>}
           </AddContainer>
         </InfoContainer>
       </Wrapper>

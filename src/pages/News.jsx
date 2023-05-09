@@ -66,7 +66,7 @@ function News() {
             <div style={{marginLeft: "5vw"}}>
                 <p>{item.title}</p>
         <ProductInfo>
-            <Price>{item.createdAt}</Price>
+            <Price>{ new Date(item.createdAt).getDay()}/{ new Date(item.createdAt).getMonth() + 1}/{ new Date(item.createdAt).getFullYear()}</Price>
         </ProductInfo>
             </div>
         </Container>

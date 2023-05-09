@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { sliderItems } from "../data";
 
@@ -77,7 +78,7 @@ function Slider() {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>Покажи сега</Button>
+              <Button><Link style={{color: 'black', textDecoration: 'none'}} to='/packs'>Покажи сега</Link></Button>
             </InfoContainer>
           </Slide>
         ))}

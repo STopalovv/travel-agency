@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import emailjs from '@emailjs/browser';
+import { useRef } from 'react';
 
 const Modal = styled.div`
   display: flex;
@@ -52,18 +54,19 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  &:hover {
+background-color: #4CAF50;
+color: white;
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+&:hover {
     background-color: #45a049;
-  }
+}
 `;
 
-function ReservationForm({ setShowForm }) {
+function ReservationForm({ destination, price, date }) {
+    const form = useRef()
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -72,6 +75,14 @@ function ReservationForm({ setShowForm }) {
     const handleSubmit = async () => {
         console.log(fullName);
         setReservationStatus('Reservation successful!');
+
+
+        emailjs.sendForm('service_hos0a6f', 'contact_form', form.current, 'hoIIze7MGQ62t1f3w')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
     }
 
     const handleNameChange = (event) => {
@@ -103,36 +114,36 @@ function ReservationForm({ setShowForm }) {
                     </div>
                     ) : (
                         <>
-                            <h2>Make a reservation</h2>
-                            <Form onSubmit={handleSubmit}>
-                                <Label htmlFor="name">Full Name:</Label>
+                            <h2>Резервация за {destination}</h2>
+                            <Form onSubmit={handleSubmit} ref={form}>
+                                <input type="hidden" name='destination_place' value={destination}/>
+                                <input type="hidden" name='price' value={price}/>
+                                <input type="hidden" name='date' value={date}/>
+                                <Label htmlFor="name">Вашите имена:</Label>
                                 <Input
                                     type="text"
                                     id="name"
-                                    name="name"
-                                    value={fullName}
-                                    onChange={handleNameChange}
+                                    name="full_name"
                                     required
+                                    onChange={handleNameChange}
                                 />
-                                <Label htmlFor="phoneNumber">Phone Number:</Label>
+                                <Label htmlFor="phoneNumber">Телефонен номер:</Label>
                                 <Input
                                     type="tel"
-                                    id="phoneNumber"
-                                    name="phoneNumber"
-                                    value={phoneNumber}
-                                    onChange={handlePhoneNumberChange}
+                                    id="phone_number"
+                                    name="phone_number"
                                     required
+                                    onChange={handlePhoneNumberChange}
                                 />
-                                <Label htmlFor="email">Email:</Label>
+                                <Label htmlFor="email">Имейл:</Label>
                                 <Input
                                     type="email"
                                     id="email"
                                     name="email"
-                                    value={email}
-                                    onChange={handleEmailChange}
                                     required
+                                    onChange={handleEmailChange}
                                 />
-                                <Button onClick={() => handleSubmit()}>Reserve</Button>
+                                <Button>Резервирай</Button>
                             </Form>
                         </>
                     )

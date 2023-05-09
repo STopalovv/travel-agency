@@ -11,7 +11,7 @@ export const sliderItems = [
   export const aboutUs = [
     {
       id: 1,
-      img: 'https://cdn-bofje.nitrocdn.com/akABAREbMCBheLcAXBVEnlmzbXBTWhei/assets/images/optimized/rev-02829f0/blog/wp-content/uploads/2016/10/happy-tourists-sightseeing-with-map.jpeg',
+      img: 'https://nstatic.nova.bg/public/pics/nova/article/980x551_1630663756.jpg',
       title: `Фирма "Мечтана ваканция"`,
       desc: "Предлагаме организиране на пътувания и предоставяне на пакети туриститечски дестинации вече 2 години"
     }, 
